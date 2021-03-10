@@ -130,6 +130,7 @@ p.filter-title {
     background-color: #ffffff;
     padding: 10px;
     margin: 0 10px;
+    min-height: 360px;
 }
 
 .spacex-launch-block .img-wrapper {
@@ -194,10 +195,6 @@ p.filter-title {
     .spacex-launch-block {
         width: 25%;
         float: left;
-    }
-
-    .spacex-launch-wrapper {
-        min-height: 335px;
     }
 }
 
