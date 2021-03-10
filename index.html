@@ -9,6 +9,13 @@
 </head>
 <body>
 
+    <div class="text-center spinner-div" id="spinner" style="display: none;">
+        <div class="spinner-bg" id="spinner-bg"></div>
+        <div class="spinner-border" role="status">
+            <div class="loader"></div>
+        </div>                              
+    </div>
+
     <div class="main-page">
         <div class="filters-container"></div>
         <div id="launches-container"></div>
@@ -18,7 +25,9 @@
 
     <script>
         $(document).ready(function() {
+            $("#spinner").show();
             $.get("https://api.spaceXdata.com/v3/launches?limit=100", function(data, status){
+                $("#spinner").hide();
                 let singleLaunchBlock = '<div>';
                 $.each(data, function(index, launch) {
                     console.log(launch);
