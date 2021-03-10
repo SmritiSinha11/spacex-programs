@@ -1,5 +1,8 @@
 body {
     margin: 0;
+    height: 100%;
+    display: flex;
+    background-color: #dadada;
 }
 
 .spinner-div .spinner-bg{
@@ -74,9 +77,36 @@ button {
     border-color: #398439;
 }
 
+.clear-filters {
+    text-align: center;
+}
+
+.btn-clear-all {
+    width: 100px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.filters-container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.filters-container h3 {
+    margin: 0;
+}
+
 .filters-container .btn-filter {
     margin-bottom: 10px;
-    /* width: 100%; */
+    width: 100px;
+    margin: 0 30px 10px;
 }
 
 p.filter-title {
