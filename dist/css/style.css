@@ -39,6 +39,16 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+/* 
+ * Grid Css
+ */
+.main-page {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .spacex-launch-block {
     border: 1px solid;
 }
@@ -47,7 +57,30 @@ button {
     outline: none;
 }
 
-button.active {
-    background-color: #22b922;
-    color: #ffffff;
+.btn-filter {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+.btn-filter.focus, .btn-filter:focus, .btn-filter:hover, .btn-filter.active {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+}
+
+.filters-container .btn-filter {
+    margin-bottom: 10px;
+    /* width: 100%; */
+}
+
+p.filter-title {
+    margin: 16px 50px;
+    border-bottom: 1px solid;
+    text-align: center;
 }
