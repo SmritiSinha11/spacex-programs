@@ -4,10 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/css/style.css">
     <title>SpaceX Programs</title>
 </head>
 <body>
+
+    <div class="main-page">
+        <div class="filters-container"></div>
+        <div id="launches-container"></div>
+    </div>
     
     <script src="./dist/js/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $.get("https://api.spaceXdata.com/v3/launches?limit=100", function(data, status){
+                let singleLaunchBlock = '<div>';
+                $.each(data, function(index, launch) {
+                    console.log(launch);
+                    singleLaunchBlock += '<div class="spacex-launch-block">';
+                    singleLaunchBlock += '<div>'+ launch.mission_name +' #'+ launch.flight_number +'</div>';
+                    singleLaunchBlock += '<img src="'+ launch.links.mission_patch_small +'" alt="'+ launch.mission_name +'" />';
+                    if(launch.mission_id.length) {
+                        singleLaunchBlock += '<div>';
+                        singleLaunchBlock += '<span>Mission Ids:</span>';
+                        singleLaunchBlock += '<ul>';
+                        launch.mission_id.forEach(mission => {
+                            singleLaunchBlock += '<li>'+ mission +'</li>';
+                        });
+                        singleLaunchBlock += '</ul>';
+                        singleLaunchBlock += '</div>';
+                    }
+                    singleLaunchBlock += '<div><span>Launch Year: </span><span>'+ launch.launch_year +'</span></div>';
+                    singleLaunchBlock += '<div><span>Successful Launch: </span><span>'+ launch.launch_success +'</span></div>';
+                    singleLaunchBlock += '<div><span>Successful Landing: </span><span>'+ launch.launch_landing +'</span></div>';
+                    singleLaunchBlock += '</div>';
+                });
+                singleLaunchBlock += '</div>';
+                $("#launches-container").html(singleLaunchBlock);
+            });
+        });
+    </script>
 </body>
 </html>
