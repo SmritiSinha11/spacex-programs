@@ -17,7 +17,36 @@
     </div>
 
     <div class="main-page">
-        <div class="filters-container"></div>
+        <div class="filters-container">
+            <div class="years-filter">
+                <span>Launch Year</span>
+                <button class="btn-year-filter">2006</button>
+                <button class="btn-year-filter">2007</button>
+                <button class="btn-year-filter">2008</button>
+                <button class="btn-year-filter">2009</button>
+                <button class="btn-year-filter">2010</button>
+                <button class="btn-year-filter">2011</button>
+                <button class="btn-year-filter">2012</button>
+                <button class="btn-year-filter">2013</button>
+                <button class="btn-year-filter">2014</button>
+                <button class="btn-year-filter">2015</button>
+                <button class="btn-year-filter">2016</button>
+                <button class="btn-year-filter">2017</button>
+                <button class="btn-year-filter">2018</button>
+                <button class="btn-year-filter">2019</button>
+                <button class="btn-year-filter">2020</button>
+            </div>
+            <div class="launch-sucess-filter">
+                <span>Successful Launch</span>
+                <button class="btn-launch-success-filter">true</button>
+                <button class="btn-launch-success-filter">false</button>
+            </div>
+            <div class="land-sucess-filter">
+                <span>Successful Land</span>
+                <button class="btn-land-success-filter">true</button>
+                <button class="btn-land-success-filter">false</button>
+            </div>
+        </div>
         <div id="launches-container"></div>
     </div>
     
@@ -25,12 +54,48 @@
 
     <script>
         $(document).ready(function() {
+            var year;
+            var launchSuccess;
+            var landSuccess;
+
             $("#spinner").show();
             $.get("https://api.spaceXdata.com/v3/launches?limit=100", function(data, status){
                 $("#spinner").hide();
-                let singleLaunchBlock = '<div>';
+                generateLaunchBlocks(data);
+            });
+
+            $(".btn-year-filter").click(function() {
+                year = $(this).text();
+                filterLaunches(year, launchSuccess, landSuccess);
+            });
+            
+            $(".btn-launch-success-filter").click(function() {
+                launchSuccess = $(this).text();
+                filterLaunches(year, launchSuccess, landSuccess);
+            });
+
+            $(".btn-land-success-filter").click(function() {
+                landSuccess = $(this).text();
+                filterLaunches(year, launchSuccess, landSuccess);
+            });
+        });
+
+        function filterLaunches(year, launchSuccess, landSuccess) {
+            let url = 'https://api.spaceXdata.com/v3/launches?limit=100';
+            if (launchSuccess) url += '&launch_success='+ launchSuccess;
+            if (landSuccess) url += '&landSuccess='+ landSuccess;
+            if (year) url += '&launch_year=' + year;
+            $("#spinner").show();
+            $.get(url, function(data, status) {
+                $("#spinner").hide();
+                generateLaunchBlocks(data);
+            });
+        }
+
+        function generateLaunchBlocks(data) {
+            let singleLaunchBlock = '<div>';
+            if (data.length) {
                 $.each(data, function(index, launch) {
-                    console.log(launch);
                     singleLaunchBlock += '<div class="spacex-launch-block">';
                     singleLaunchBlock += '<div>'+ launch.mission_name +' #'+ launch.flight_number +'</div>';
                     singleLaunchBlock += '<img src="'+ launch.links.mission_patch_small +'" alt="'+ launch.mission_name +'" />';
@@ -46,13 +111,15 @@
                     }
                     singleLaunchBlock += '<div><span>Launch Year: </span><span>'+ launch.launch_year +'</span></div>';
                     singleLaunchBlock += '<div><span>Successful Launch: </span><span>'+ launch.launch_success +'</span></div>';
-                    singleLaunchBlock += '<div><span>Successful Landing: </span><span>'+ launch.launch_landing +'</span></div>';
+                    // singleLaunchBlock += '<div><span>Successful Landing: </span><span>'+ launch.launch_landing +'</span></div>';     // As response object is not having key 'launch_landing'.
                     singleLaunchBlock += '</div>';
                 });
-                singleLaunchBlock += '</div>';
-                $("#launches-container").html(singleLaunchBlock);
-            });
-        });
+            } else {
+                singleLaunchBlock += '<p>No data to display</p>';
+            }
+            singleLaunchBlock += '</div>';
+            $("#launches-container").html(singleLaunchBlock);
+        }
     </script>
 </body>
 </html>
