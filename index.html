@@ -18,41 +18,45 @@
 
     <div class="main-page">
         <h1>SpaceX Launch Programs</h1>
-        <div class="filters-container">
-            <h3>Filters</h3>
-            <div class="years-filter">
-                <p class="filter-title">Launch Year</p>
-                <button class="btn-filter btn-year-filter">2006</button>
-                <button class="btn-filter btn-year-filter">2007</button>
-                <button class="btn-filter btn-year-filter">2008</button>
-                <button class="btn-filter btn-year-filter">2009</button>
-                <button class="btn-filter btn-year-filter">2010</button>
-                <button class="btn-filter btn-year-filter">2011</button>
-                <button class="btn-filter btn-year-filter">2012</button>
-                <button class="btn-filter btn-year-filter">2013</button>
-                <button class="btn-filter btn-year-filter">2014</button>
-                <button class="btn-filter btn-year-filter">2015</button>
-                <button class="btn-filter btn-year-filter">2016</button>
-                <button class="btn-filter btn-year-filter">2017</button>
-                <button class="btn-filter btn-year-filter">2018</button>
-                <button class="btn-filter btn-year-filter">2019</button>
-                <button class="btn-filter btn-year-filter">2020</button>
+        <div class="row">
+            <div class="filters-container">
+                <div class="filters-wrapper">
+                    <h3>Filters</h3>
+                    <div class="years-filter">
+                        <p class="filter-title">Launch Year</p>
+                        <button class="btn-filter btn-year-filter">2006</button>
+                        <button class="btn-filter btn-year-filter">2007</button>
+                        <button class="btn-filter btn-year-filter">2008</button>
+                        <button class="btn-filter btn-year-filter">2009</button>
+                        <button class="btn-filter btn-year-filter">2010</button>
+                        <button class="btn-filter btn-year-filter">2011</button>
+                        <button class="btn-filter btn-year-filter">2012</button>
+                        <button class="btn-filter btn-year-filter">2013</button>
+                        <button class="btn-filter btn-year-filter">2014</button>
+                        <button class="btn-filter btn-year-filter">2015</button>
+                        <button class="btn-filter btn-year-filter">2016</button>
+                        <button class="btn-filter btn-year-filter">2017</button>
+                        <button class="btn-filter btn-year-filter">2018</button>
+                        <button class="btn-filter btn-year-filter">2019</button>
+                        <button class="btn-filter btn-year-filter">2020</button>
+                    </div>
+                    <div class="launch-sucess-filter">
+                        <p class="filter-title">Successful Launch</p>
+                        <button class="btn-filter btn-launch-success-filter">true</button>
+                        <button class="btn-filter btn-launch-success-filter">false</button>
+                    </div>
+                    <div class="land-sucess-filter">
+                        <p class="filter-title">Successful Land</p>
+                        <button class="btn-filter btn-land-success-filter">true</button>
+                        <button class="btn-filter btn-land-success-filter">false</button>
+                    </div>
+                    <div class="clear-filters">
+                        <button id="btn-clear-all">Clear All</button>
+                    </div>
+                </div>
             </div>
-            <div class="launch-sucess-filter">
-                <p class="filter-title">Successful Launch</p>
-                <button class="btn-filter btn-launch-success-filter">true</button>
-                <button class="btn-filter btn-launch-success-filter">false</button>
-            </div>
-            <div class="land-sucess-filter">
-                <p class="filter-title">Successful Land</p>
-                <button class="btn-filter btn-land-success-filter">true</button>
-                <button class="btn-filter btn-land-success-filter">false</button>
-            </div>
-            <div class="clear-filters">
-                <button id="btn-clear-all">Clear All</button>
-            </div>
+            <div id="launches-container"></div>
         </div>
-        <div id="launches-container"></div>
     </div>
     
     <script src="./dist/js/jquery.min.js"></script>

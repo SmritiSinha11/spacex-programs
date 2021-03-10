@@ -52,8 +52,13 @@ body {
     margin-left: auto;
 }
 
+.row {
+    margin: 0 -10px;
+}
+
 button {
     outline: none;
+    cursor: pointer;
 }
 
 .btn-filter {
@@ -69,8 +74,8 @@ button {
 
 .btn-filter.focus, .btn-filter:focus, .btn-filter:hover, .btn-filter.active {
     color: #fff;
-    background-color: #449d44;
-    border-color: #398439;
+    background-color: #276527;
+    border-color: #276527;
 }
 
 .clear-filters {
@@ -89,10 +94,14 @@ button {
 }
 
 .filters-container {
+    margin-bottom: 15px;
+}
+
+.filters-wrapper {
     background-color: #ffffff;
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 15px;
+    margin: 0 10px;
 }
 
 .filters-container h3 {
@@ -112,15 +121,15 @@ p.filter-title {
 }
 
 .spacex-launch-block {
-    background-color: #ffffff;
     margin-bottom: 15px;
-    border-radius: 5px;
-    color: #3c81bd;
-    width: 100%;
 }
 
 .spacex-launch-wrapper {
+    border-radius: 5px;
+    color: #3c81bd;
+    background-color: #ffffff;
     padding: 10px;
+    margin: 0 10px;
 }
 
 .spacex-launch-block .img-wrapper {
@@ -152,4 +161,29 @@ p.filter-title {
 
 .spacex-launch-block .desc-div {
     margin-bottom: 10px;
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+    .filters-container {
+        width: 25%;
+        float: left;
+    }
+
+    .filters-container .btn-filter {
+        margin: 0 28px 10px;
+    }
+
+    #launches-container {
+        width: 75%;
+        float: right;
+    }
+
+    .spacex-launch-block {
+        width: 25%;
+        float: left;
+    }
+
+    .spacex-launch-wrapper {
+        min-height: 335px;
+    }
 }
