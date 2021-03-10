@@ -2,6 +2,7 @@ $(document).ready(function() {
     var year;
     var launchSuccess;
     var landSuccess;
+    updateUrl(year, landSuccess, launchSuccess);
     filterLaunches(year, launchSuccess, landSuccess);
 
     $(".btn-year-filter").click(function() {
@@ -10,6 +11,7 @@ $(document).ready(function() {
         });
         $(this).addClass('active');
         year = $(this).text();
+        updateUrl(year, landSuccess, launchSuccess);
         filterLaunches(year, launchSuccess, landSuccess);
     });
     
@@ -19,6 +21,7 @@ $(document).ready(function() {
         });
         $(this).addClass('active');
         launchSuccess = $(this).text();
+        updateUrl(year, landSuccess, launchSuccess);
         filterLaunches(year, launchSuccess, landSuccess);
     });
 
@@ -28,6 +31,7 @@ $(document).ready(function() {
         });
         $(this).addClass('active');
         landSuccess = $(this).text();
+        updateUrl(year, landSuccess, launchSuccess);
         filterLaunches(year, launchSuccess, landSuccess);
     });
 
@@ -36,14 +40,15 @@ $(document).ready(function() {
             $(elm).removeClass('active');
         });
         year = launchSuccess = landSuccess = undefined;
+        updateUrl(year, landSuccess, launchSuccess);
         filterLaunches(year, launchSuccess, landSuccess);
-    })
+    });
 });
 
 function filterLaunches(year, launchSuccess, landSuccess) {
     let url = 'https://api.spaceXdata.com/v3/launches?limit=100';
     if (launchSuccess) url += '&launch_success='+ launchSuccess;
-    if (landSuccess) url += '&landSuccess='+ landSuccess;
+    if (landSuccess) url += '&land_success='+ landSuccess;
     if (year) url += '&launch_year=' + year;
     $("#spinner").show();
     $.get(url, function(data, status) {
@@ -79,4 +84,12 @@ function generateLaunchBlocks(data) {
     }
     singleLaunchBlock += '</div>';
     $("#launches-container").html(singleLaunchBlock);
+}
+
+function updateUrl(year, landSuccess, launchSuccess) {
+    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?limit=100';
+    if (launchSuccess) newurl += '&launch_success='+ launchSuccess;
+    if (landSuccess) newurl += '&land_success='+ landSuccess;
+    if (year) newurl += '&launch_year=' + year;
+    window.history.pushState({path:newurl},'',newurl);
 }
