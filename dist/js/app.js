@@ -2,12 +2,7 @@ $(document).ready(function() {
     var year;
     var launchSuccess;
     var landSuccess;
-
-    $("#spinner").show();
-    $.get("https://api.spaceXdata.com/v3/launches?limit=100", function(data, status){
-        $("#spinner").hide();
-        generateLaunchBlocks(data);
-    });
+    filterLaunches(year, launchSuccess, landSuccess);
 
     $(".btn-year-filter").click(function() {
         $(".btn-year-filter").each(function(i, elm) {
