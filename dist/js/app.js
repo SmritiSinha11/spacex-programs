@@ -10,19 +10,39 @@ $(document).ready(function() {
     });
 
     $(".btn-year-filter").click(function() {
+        $(".btn-year-filter").each(function(i, elm) {
+            $(elm).removeClass('active');
+        });
+        $(this).addClass('active');
         year = $(this).text();
         filterLaunches(year, launchSuccess, landSuccess);
     });
     
     $(".btn-launch-success-filter").click(function() {
+        $(".btn-launch-success-filter").each(function(i, elm) {
+            $(elm).removeClass('active');
+        });
+        $(this).addClass('active');
         launchSuccess = $(this).text();
         filterLaunches(year, launchSuccess, landSuccess);
     });
 
     $(".btn-land-success-filter").click(function() {
+        $(".btn-land-success-filter").each(function(i, elm) {
+            $(elm).removeClass('active');
+        });
+        $(this).addClass('active');
         landSuccess = $(this).text();
         filterLaunches(year, launchSuccess, landSuccess);
     });
+
+    $("#btn-clear-all").click(function() {
+        $("button").each(function(i, elm) {
+            $(elm).removeClass('active');
+        });
+        year = launchSuccess = landSuccess = undefined;
+        filterLaunches(year, launchSuccess, landSuccess);
+    })
 });
 
 function filterLaunches(year, launchSuccess, landSuccess) {

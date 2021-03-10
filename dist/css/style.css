@@ -42,3 +42,12 @@ body {
 .spacex-launch-block {
     border: 1px solid;
 }
+
+button {
+    outline: none;
+}
+
+button.active {
+    background-color: #22b922;
+    color: #ffffff;
+}
