@@ -62,11 +62,12 @@ function generateLaunchBlocks(data) {
     if (data.length) {
         $.each(data, function(index, launch) {
             singleLaunchBlock += '<div class="spacex-launch-block">';
-            singleLaunchBlock += '<div>'+ launch.mission_name +' #'+ launch.flight_number +'</div>';
-            singleLaunchBlock += '<img src="'+ launch.links.mission_patch_small +'" alt="'+ launch.mission_name +'" />';
+            singleLaunchBlock += '<div class="spacex-launch-wrapper">';
+            singleLaunchBlock += '<div class="img-wrapper"><img src="'+ launch.links.mission_patch_small +'" alt="'+ launch.mission_name +'" /></div>';
+            singleLaunchBlock += '<p class="mission-name">'+ launch.mission_name +' #'+ launch.flight_number +'</p>';
             if(launch.mission_id.length) {
-                singleLaunchBlock += '<div>';
-                singleLaunchBlock += '<span>Mission Ids:</span>';
+                singleLaunchBlock += '<div class="desc-div">';
+                singleLaunchBlock += '<label>Mission Ids:</label>';
                 singleLaunchBlock += '<ul>';
                 launch.mission_id.forEach(mission => {
                     singleLaunchBlock += '<li>'+ mission +'</li>';
@@ -74,9 +75,10 @@ function generateLaunchBlocks(data) {
                 singleLaunchBlock += '</ul>';
                 singleLaunchBlock += '</div>';
             }
-            singleLaunchBlock += '<div><span>Launch Year: </span><span>'+ launch.launch_year +'</span></div>';
-            singleLaunchBlock += '<div><span>Successful Launch: </span><span>'+ launch.launch_success +'</span></div>';
-            // singleLaunchBlock += '<div><span>Successful Landing: </span><span>'+ launch.launch_landing +'</span></div>';     // As response object is not having key 'launch_landing'.
+            singleLaunchBlock += '<div class="desc-div"><label>Launch Year: </label><span>'+ launch.launch_year +'</span></div>';
+            singleLaunchBlock += '<div class="desc-div"><label>Successful Launch: </label><span>'+ launch.launch_success +'</span></div>';
+            // singleLaunchBlock += '<div class="desc-div"><label>Successful Landing: </label><span>'+ launch.launch_landing +'</span></div>';     // As response object is not having key 'launch_landing'.
+            singleLaunchBlock += '</div>';
             singleLaunchBlock += '</div>';
         });
     } else {
