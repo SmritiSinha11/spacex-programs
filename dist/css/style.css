@@ -95,6 +95,7 @@ button {
 
 .filters-container {
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .filters-wrapper {
@@ -110,8 +111,7 @@ button {
 
 .filters-container .btn-filter {
     margin-bottom: 10px;
-    width: 100px;
-    margin: 0 30px 10px;
+    width: 40%;
 }
 
 p.filter-title {
@@ -163,14 +163,27 @@ p.filter-title {
     margin-bottom: 10px;
 }
 
-@media (min-width: 1024px) and (max-width: 1440px) {
+@media (min-width: 700px) {
     .filters-container {
         width: 25%;
         float: left;
     }
 
-    .filters-container .btn-filter {
-        margin: 0 28px 10px;
+    #launches-container {
+        width: 75%;
+        float: right;
+    }
+
+    .spacex-launch-block {
+        width: 50%;
+        float: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    .filters-container {
+        width: 25%;
+        float: left;
     }
 
     #launches-container {
@@ -185,5 +198,11 @@ p.filter-title {
 
     .spacex-launch-wrapper {
         min-height: 335px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .main-page {
+        width: 1440px;
     }
 }
