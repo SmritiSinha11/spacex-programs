@@ -1,4 +1,4 @@
-# spacex-programs
+# SpaceX Launch Programs
 
 ## Tech Stack Used:
 1. HTML

@@ -3,7 +3,7 @@ $(document).ready(function() {
     var launchSuccess;
     var landSuccess;
     updateUrl(year, landSuccess, launchSuccess);
-    filterLaunches(year, launchSuccess, landSuccess);
+    getDataFromEndpoint(year, launchSuccess, landSuccess);
 
     $(".btn-year-filter").click(function() {
         $(".btn-year-filter").each(function(i, elm) {
@@ -12,7 +12,7 @@ $(document).ready(function() {
         $(this).addClass('active');
         year = $(this).text();
         updateUrl(year, landSuccess, launchSuccess);
-        filterLaunches(year, launchSuccess, landSuccess);
+        getDataFromEndpoint(year, launchSuccess, landSuccess);
     });
     
     $(".btn-launch-success-filter").click(function() {
@@ -22,7 +22,7 @@ $(document).ready(function() {
         $(this).addClass('active');
         launchSuccess = $(this).text();
         updateUrl(year, landSuccess, launchSuccess);
-        filterLaunches(year, launchSuccess, landSuccess);
+        getDataFromEndpoint(year, launchSuccess, landSuccess);
     });
 
     $(".btn-land-success-filter").click(function() {
@@ -32,7 +32,7 @@ $(document).ready(function() {
         $(this).addClass('active');
         landSuccess = $(this).text();
         updateUrl(year, landSuccess, launchSuccess);
-        filterLaunches(year, launchSuccess, landSuccess);
+        getDataFromEndpoint(year, launchSuccess, landSuccess);
     });
 
     $("#btn-clear-all").click(function() {
@@ -41,11 +41,15 @@ $(document).ready(function() {
         });
         year = launchSuccess = landSuccess = undefined;
         updateUrl(year, landSuccess, launchSuccess);
-        filterLaunches(year, launchSuccess, landSuccess);
+        getDataFromEndpoint(year, launchSuccess, landSuccess);
     });
 });
 
-function filterLaunches(year, launchSuccess, landSuccess) {
+/* 
+ * FUNCTION: Helps to make call the spacex api to get data.
+ * Manipulate with params and triggers the call.
+ */
+function getDataFromEndpoint(year, launchSuccess, landSuccess) {
     let url = 'https://api.spaceXdata.com/v3/launches?limit=100';
     if (launchSuccess) url += '&launch_success='+ launchSuccess;
     if (landSuccess) url += '&land_success='+ landSuccess;
@@ -57,6 +61,9 @@ function filterLaunches(year, launchSuccess, landSuccess) {
     });
 }
 
+/* 
+ * FUNCTION: It helps to generate html block for one single launch detail block.
+ */
 function generateLaunchBlocks(data) {
     let singleLaunchBlock = '<div>';
     if (data.length) {
@@ -88,6 +95,9 @@ function generateLaunchBlocks(data) {
     $("#launches-container").html(singleLaunchBlock);
 }
 
+/* 
+ * FUNCTION: Helps to update the url parameter without refreshing the page
+ */
 function updateUrl(year, landSuccess, launchSuccess) {
     var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?limit=100';
     if (launchSuccess) newurl += '&launch_success='+ launchSuccess;
